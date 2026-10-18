@@ -1,0 +1,47 @@
+:root {
+  --oakum-color-canvas: #16151b;
+  --oakum-color-surface: #232130;
+  --oakum-color-lilac: #a39cbf;
+  --oakum-color-lilac-soft: #7d7698;
+  --oakum-color-ink-lilac: #4e4766;
+  --oakum-color-tint: #cfcbe0;
+  --oakum-color-light: #f2f1f6;
+  --oakum-color-text: #e4e2ec;
+  --oakum-color-mist: #9893ac;
+
+  --oakum-font-sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --oakum-font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  --oakum-space-1: 4px;
+  --oakum-space-2: 8px;
+  --oakum-space-3: 12px;
+  --oakum-space-4: 16px;
+  --oakum-space-6: 24px;
+  --oakum-space-8: 32px;
+  --oakum-space-12: 48px;
+  --oakum-space-16: 64px;
+  --oakum-space-24: 96px;
+  --oakum-space-32: 128px;
+
+  --oakum-radius-compact: 8px;
+  --oakum-radius-card: 16px;
+  --oakum-radius-panel: 24px;
+}
+
+[data-oakum-theme="dark"] {
+  --oakum-canvas: var(--oakum-color-canvas);
+  --oakum-surface: var(--oakum-color-surface);
+  --oakum-text: var(--oakum-color-text);
+  --oakum-text-accent: var(--oakum-color-lilac);
+  --oakum-text-muted: var(--oakum-color-mist);
+  --oakum-line: var(--oakum-color-lilac);
+}
+
+[data-oakum-theme="light"] {
+  --oakum-canvas: var(--oakum-color-light);
+  --oakum-surface: #fff;
+  --oakum-text: var(--oakum-color-canvas);
+  --oakum-text-accent: var(--oakum-color-ink-lilac);
+  --oakum-text-muted: var(--oakum-color-ink-lilac);
+  --oakum-line: var(--oakum-color-lilac-soft);
+}

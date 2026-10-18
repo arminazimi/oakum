@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="brand/exports/banner-dark.png">
+    <img alt="Oakum: changes flow, state holds." src="brand/exports/banner-light.png" width="100%">
+  </picture>
+</p>
+
 # Oakum
 
 **Changes flow. State holds.**
@@ -40,6 +47,10 @@ Phase 1 is pre-registered on OSF before any detection code exists, and its resul
 
 Every planned task is a small issue with a lane, a size, and a wave; four agents can work at once. Start with
 [CONTRIBUTING.md](CONTRIBUTING.md). Agents: read [AGENTS.md](AGENTS.md).
+
+## Brand
+
+The name, mark, palette, and badge live in [brand/](brand/). Start with [BRAND_GUIDE.md](brand/BRAND_GUIDE.md); the rules for using the name are in [USAGE_POLICY.md](brand/USAGE_POLICY.md).
 
 ## License
 

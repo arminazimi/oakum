@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="28" viewBox="0 0 192 28" role="img" aria-label="checked with oakum">
+<title>checked with oakum</title>
+<clipPath id="r"><rect width="192" height="28" rx="6"/></clipPath>
+<g clip-path="url(#r)">
+<rect width="135" height="28" fill="#232130"/>
+<rect x="135" width="57" height="28" fill="#A39CBF"/>
+</g>
+<g transform="translate(10 5) scale(0.0703125)"><defs><mask id="b-cut" maskUnits="userSpaceOnUse" x="0" y="0" width="256" height="256"><rect width="256" height="256" fill="white"/><rect x="117" y="24" width="22" height="62" fill="black"/></mask></defs><g fill="none" stroke-width="16" mask="url(#b-cut)"><circle cx="128" cy="128" r="88" stroke="#F2F1F6"/><circle cx="128" cy="128" r="58" stroke="#F2F1F6"/></g></g>
+<g font-family="Inter, Verdana, Arial, sans-serif" font-size="12" font-weight="700" dominant-baseline="central">
+<text x="36" y="14.5" fill="#F2F1F6">checked with</text>
+<text x="145" y="14.5" fill="#16151B">oakum</text>
+</g>
+</svg>
