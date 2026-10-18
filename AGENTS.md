@@ -14,6 +14,7 @@ Phase 0–1: the falsification experiment. The repository holds the roadmap, its
 - `go test -tags integration ./...`: tests that need Docker.
 - `npm run roadmap:build`: writes the issue preview and the four-agent plan to `planning/roadmap/out/` (generated, not committed).
 - `npm run roadmap:apply`: dry run of the GitHub sync. `-- --apply` writes to GitHub; maintainers only.
+- `npm run build:brand` and `npm run export:brand`: regenerate the brand SVGs and PNGs from `tools/brand/` (export needs Chrome).
 
 ## Layout
 
@@ -23,6 +24,7 @@ Phase 0–1: the falsification experiment. The repository holds the roadmap, its
 - `bench/`: the experiment service, its variants, baseline tests, and runner.
 - `experiment/`, `research/`: the A/B/C harness and real-bug mining.
 - `ROADMAP.md`: source of truth for planned work. Issues are generated from it; edit the roadmap, not the issues.
+- `brand/`: name, mark, palette, badge, and social art. Generated from `tools/brand/`; edit `brand/tokens.json`, the guide, and the generator, not the outputs.
 - `planning/roadmap/briefs/<task-key>.md`: agent briefs merged into issues.
 - `docs/decisions/`: decisions that are hard to reverse, including any change to a shared contract.
 

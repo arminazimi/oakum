@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title">
+<title id="title">Oakum social preview</title>
+<rect width="1280" height="640" fill="#16151B"/>
+<g transform="translate(112 192) scale(1)"><defs><mask id="t0-cut" maskUnits="userSpaceOnUse" x="0" y="0" width="256" height="256"><rect width="256" height="256" fill="white"/><rect x="117" y="24" width="22" height="62" fill="black"/></mask></defs><g fill="none" stroke-width="16" mask="url(#t0-cut)"><circle cx="128" cy="128" r="88" stroke="#A39CBF"/><circle cx="128" cy="128" r="58" stroke="#F2F1F6"/></g></g>
+<text x="420" y="322" fill="#F2F1F6" font-family="Inter Variable, Inter, Helvetica Neue, Arial, sans-serif" font-size="82" font-weight="700" letter-spacing="8">OAKUM</text>
+<text x="424" y="378" fill="#A39CBF" font-family="IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24" letter-spacing="2">CHANGES FLOW. STATE HOLDS.</text>
+<text x="112" y="566" fill="#9893AC" font-family="IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" letter-spacing="0.5">Agent-native verification of application state.</text>
+</svg>

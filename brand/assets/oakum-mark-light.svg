@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title">
+<title id="title">Oakum mark (light surface)</title>
+<defs><mask id="m-cut" maskUnits="userSpaceOnUse" x="0" y="0" width="256" height="256"><rect width="256" height="256" fill="white"/><rect x="117" y="24" width="22" height="62" fill="black"/></mask></defs><g fill="none" stroke-width="16" mask="url(#m-cut)"><circle cx="128" cy="128" r="88" stroke="#7D7698"/><circle cx="128" cy="128" r="58" stroke="#16151B"/></g>
+</svg>
