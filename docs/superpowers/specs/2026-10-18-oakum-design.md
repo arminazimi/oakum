@@ -1,9 +1,9 @@
-# wt: design spec
+# Oakum: design spec
 
 - **Date:** 2026-10-18 (revision 2, after an external Codex review the same day)
 - **Status:** approved design, not implemented
-- **Working name:** `wt`. The earlier name "Watertight" collides with an active npm package in the same category
-  (github.com/camosss/watertight, "ungrounded claims fail the build"), so the final name is chosen in a separate brand task.
+- **Name:** **Oakum**, the tarred fibre caulkers drive into a hull's seams to make it watertight. Chosen 2026-10-18; free on npm, PyPI,
+  and Homebrew. Earlier working names: StateProof, Watertight (collides with npm `watertight`, same category), `wt`.
 - **Source thesis:** `stateproof-watertight-complete-2026-10-18.md` (Watertight / StateProof). This spec keeps its property-first model,
   outcome semantics, and safety rules, and changes how properties are written, validated, and executed.
 - **Family:** fourth project after Evergreen, Seaworthy, and Slipway. Same roadmap format (lanes, sizes, roadmap keys).
@@ -31,12 +31,12 @@ interaction between processes at runtime, and only executing it under the right 
 
 ## 2. Goal and success criteria
 
-**North star.** When a coding agent changes code that touches a database, cache, or broker, running `wt` before pushing is as normal as
+**North star.** When a coding agent changes code that touches a database, cache, or broker, running `oakum` before pushing is as normal as
 running the tests, and StateBench is how agents are measured on state correctness.
 
 **Honest scope of the north star.** "Every agent on every push" is not realistic for a tool about state, because most repositories have no
-stateful backend. The reachable version is: `wt scan` runs on every push in any repository with zero setup and stays silent when there is
-nothing to say, and `wt verify` runs in CI for every repository with a stateful backend.
+stateful backend. The reachable version is: `oakum scan` runs on every push in any repository with zero setup and stays silent when there is
+nothing to say, and `oakum verify` runs in CI for every repository with a stateful backend.
 
 **Floor.** If the product does not take off, the project still yields a public real-bug dataset, an empirical study, and a pre-registered
 agent experiment, each publishable whatever the result.
@@ -46,10 +46,10 @@ agent experiment, each publishable whatever the result.
 | Gate | Evidence | When | Blocks |
 |---|---|---|---|
 | G1 Detection | 3/3 seeded bugs fail (missing invalidation, wrong-key invalidation, stale repopulation); 0/5 controls fail (3 correct, 2 permitted-eventual); stale repopulation reproduces ≥ 9/10; every fail has a fault-plan replay | end of Phase 1 | G2 run |
-| G2 Agent value | Arm C (agent + wt) beats arm B (agent + Toxiproxy + Testcontainers) on the pre-registered primary metric by the pre-registered margin, same model and budget, including held-out cases | end of Phase 1 | all breadth work |
+| G2 Agent value | Arm C (agent + oakum) beats arm B (agent + Toxiproxy + Testcontainers) on the pre-registered primary metric by the pre-registered margin, same model and budget, including held-out cases | end of Phase 1 | all breadth work |
 | R1 Dataset | ≥ 30 real state bugs mined from open-source history, each reproducible in Docker, labelled by two people with reported agreement | Phase 2 | papers 1–2 |
-| G3 Real bugs | at least one accepted upstream issue or PR from a bug `wt` found | Phase 3 | none (announcement) |
-| G4 Retention | three outside teams keep `wt verify` in CI for 30+ days | Phase 7 | 1.0 announcement |
+| G3 Real bugs | at least one accepted upstream issue or PR from a bug `oakum` found | Phase 3 | none (announcement) |
+| G4 Retention | three outside teams keep `oakum verify` in CI for 30+ days | Phase 7 | 1.0 announcement |
 | G5 Standard | one independent tool passes the conformance suite | Phase 12 | Spec 2.0 |
 
 **Stop or pivot** if any holds after Phase 1: C does not beat B by the pre-registered margin; stale repopulation reproduces fewer than 9 of
@@ -60,20 +60,20 @@ continues in every branch.
 ## 3. Decisions
 
 1. **Two layers.** A fast static layer (`scan`) for every push and an execution layer (`verify`) for CI.
-2. **Zero-config scan.** `scan` works with no `wt` config and reports coverage facts, never a failure.
+2. **Zero-config scan.** `scan` works with no `oakum` config and reports coverage facts, never a failure.
 3. **Go first.** The tool is a single Go binary; the first analyzer targets Go services.
 4. **Native analyzer.** `go/packages` plus `go/types`, not tree-sitter, so `rdb.Set` on a go-redis client is distinguishable from any
    other `Set`. Analyzers for other languages are native to them and emit the same `state-touch` format.
-5. **Agents write properties; `wt` judges; humans promote.** Antithesis already does agent-written properties and agent mutants for
-   distributed databases on its own platform. wt applies the loop to application-level state (cache, broker, projections), runs locally
+5. **Agents write properties; `oakum` judges; humans promote.** Antithesis already does agent-written properties and agent mutants for
+   distributed databases on its own platform. oakum applies the loop to application-level state (cache, broker, projections), runs locally
    and in ordinary CI, and is free.
-6. **Command-aware protocol proxies.** Per-command faults exist (RedFI). wt adds non-blocking `hold-until` (one connection's `SET` is held
+6. **Command-aware protocol proxies.** Per-command faults exist (RedFI). oakum adds non-blocking `hold-until` (one connection's `SET` is held
    until a named event while other connections proceed), which reproduces stale repopulation without instrumenting the app. The RESP proxy
    is built on `tidwall/redcon` for the server side, not from scratch, and not on a fork of RedFI.
 7. **Two kinds of checks.** Property sensitivity (can this property catch a code defect?) and fault resilience (does the system keep this
    property under faults it promises to tolerate?) are separate commands and separate report sections.
 8. **Packs, not engines.** The eight modules from the thesis are packs: property type plus proxy faults plus analyzer detectors.
-9. **`wt init` edits `AGENTS.md` by default**, shows the diff, and accepts `--no-agents-md`.
+9. **`oakum init` edits `AGENTS.md` by default**, shows the diff, and accepts `--no-agents-md`.
 10. **Durable advantage is data and position, not proxy code.** Any proxy feature can be copied in a month. What is hard to copy: StateBench
     and its held-out split, the real-bug dataset, a library of validated property packs for common stacks, and early presence in agent
     workflows (AGENTS.md, Skill, Action).
@@ -82,14 +82,14 @@ continues in every branch.
 
 ## 4. Prior art
 
-| Tool | Overlap | What wt does differently |
+| Tool | Overlap | What oakum does differently |
 |---|---|---|
 | Antithesis (+ antithesis-skills, Apache-2.0) | Agents infer properties, agents inject mutants, fault injection, replay | Application-level cache and broker state; command-level faults; local and CI-native; no platform |
 | RedFI | Per-command Redis faults (delay, error, empty reply, connection drop) | Non-blocking hold-until; drop of a single command; part of a property workflow; maintained |
 | Toxiproxy (+ Testcontainers Go module) | TCP-level latency, bandwidth, timeouts | Protocol-aware; arm B baseline in G2 |
 | Envoy Redis filter | Per-command delay and error | Envoy delays block later commands on the connection; no drop or hold |
 | Testcontainers | Isolated real dependencies | Used underneath; arm A/B baseline |
-| Jepsen / Elle | Consistency of databases themselves | wt checks application behaviour, not the database |
+| Jepsen / Elle | Consistency of databases themselves | oakum checks application behaviour, not the database |
 | Meta Polaris | Black-box cache consistency checking in production | Pre-merge, local, agent-facing |
 | PBT-Bench (2026) | Agents writing property tests for libraries | StateBench targets state across services |
 
@@ -102,7 +102,7 @@ This table is from targeted searches on 2026-10-18, not an exhaustive review; `p
                                       │
         ┌─────────────────────────────┼─────────────────────────────┐
         ▼                             ▼                             ▼
-   wt scan  (fast layer)        wt check-property            wt verify  (CI layer)
+   oakum scan  (fast layer)        oakum check-property            oakum verify  (CI layer)
    target ≤2s warm · no Docker  sensitivity: property vs     resilience + regression:
    exit 0                       code-defect faults           pass/fail/unknown
         │                             │                             │
@@ -122,11 +122,11 @@ This table is from targeted searches on 2026-10-18, not an exhaustive review; `p
 | Component | Does | Does not |
 |---|---|---|
 | `analyzer/<lang>` | Finds state touches: SQL writes, cache commands, publish and consume calls, with symbol, file, line, and target when static | Judge anything; run code |
-| `scan` | Joins state touches with the diff and `wt.yaml` `covers`; reports `COVERED`, `GAP`, `STALE`. Fast mode uses cached package data; deep mode reloads everything (CI) | Fail a push (exit 0 unless `--strict`) |
+| `scan` | Joins state touches with the diff and `oakum.yaml` `covers`; reports `COVERED`, `GAP`, `STALE`. Fast mode uses cached package data; deep mode reloads everything (CI) | Fail a push (exit 0 unless `--strict`) |
 | `proxy/<protocol>` | Speaks the protocol, passes traffic through, applies a fault plan, records an ordered event log | Know about properties |
 | `check-property` | Sensitivity: runs a property clean and under the code-defect faults for its type | Promote a property |
 | `verify` | Regression on the current code; resilience under the faults the property declares in `tolerates` | Touch targets outside the Compose network |
-| `report` | Stable JSON (`wt.report/v0`), SARIF, Markdown PR summary, `wt replay <run-id>` | Store seed data or secrets |
+| `report` | Stable JSON (`oakum.report/v0`), SARIF, Markdown PR summary, `oakum replay <run-id>` | Store seed data or secrets |
 
 **Dependency rules.** The analyzer knows nothing about `verify`. Proxies know nothing about properties and can ship as a standalone
 library. The core owns property semantics, outcomes, and evidence; adapters own protocol details.
@@ -162,7 +162,7 @@ Two levels, and only the first is promised:
 | Recovery | `recovers_within` | n/a | kill, partition | 5 |
 | Later | outbox, tenant isolation, migration invariants, projection monotonicity | reuse | reuse | 5+ |
 
-## 7. Property format (`wt.yaml`)
+## 7. Property format (`oakum.yaml`)
 
 ```yaml
 version: 0
@@ -211,16 +211,16 @@ properties:
 
 ```
 agent edits code
-  → wt scan --diff HEAD
+  → oakum scan --diff HEAD
      ├─ COVERED → done; CI runs verify --affected
      └─ GAP → agent drafts property from Skill template
-            → wt check-property <id>
+            → oakum check-property <id>
             → property lands as draft in the same PR → human promotes
-CI: wt verify --affected → fail → agent reads JSON + replay → fixes → reruns
+CI: oakum verify --affected → fail → agent reads JSON + replay → fixes → reruns
 ```
 
 Channels, in order: Go binary (go install, Homebrew, install script) with npm and PyPI wrappers; Agent Skill; `AGENTS.md` line written by
-`wt init`; GitHub Action with PR comment and SARIF; MCP server (`scan`, `check_property`, `explain`); optional pre-commit hook (scan only).
+`oakum init`; GitHub Action with PR comment and SARIF; MCP server (`scan`, `check_property`, `explain`); optional pre-commit hook (scan only).
 
 ## 10. Safety and threat model
 
@@ -230,7 +230,7 @@ Channels, in order: Go binary (go install, Homebrew, install script) with npm an
   repository, `network_mode: host`, `pid: host`, mounting `docker.sock`, `cap_add`, devices.
 - Proxies connect only to services inside the Compose network; anything else is `unknown: non_isolated_target`. No bypass flag.
 - The Skill tells agents to ask the user before `verify` on a repository the user did not author.
-- No real credentials: `wt` refuses to start if the environment passed to Compose contains variables matching common secret patterns,
+- No real credentials: `oakum` refuses to start if the environment passed to Compose contains variables matching common secret patterns,
   unless they are listed in `env.allow_secrets` with test values.
 - Bounded run time, redeliveries, CPU, and memory.
 - Reports keep only observed values and `$fresh` values; no seed data or secrets.
@@ -240,8 +240,8 @@ Channels, in order: Go binary (go install, Homebrew, install script) with npm an
 ## 11. Evidence program (product)
 
 - **Phase 1 experiment.** A Go service (HTTP, Postgres, Redis cache-aside) with 3 seeded bugs, 3 correct controls, 2 permitted-eventual
-  controls, plus held-out cases built by someone other than the agent that builds `wt`.
-- **Agent A/B/C.** A: agent + ordinary tests. B: agent + Testcontainers + Toxiproxy. C: agent + ordinary tests + `wt`. Model, prompt,
+  controls, plus held-out cases built by someone other than the agent that builds `oakum`.
+- **Agent A/B/C.** A: agent + ordinary tests. B: agent + Testcontainers + Toxiproxy. C: agent + ordinary tests + `oakum`. Model, prompt,
   time, token budget, guidance, attempts, and metrics pre-registered on OSF. Primary metric: bug fixed without regression. Secondary: time,
   tokens, false positives and negatives, reproducibility, manual setup.
 - **Ecosystem scans and upstream bugs** after G2 (Phase 2+).
@@ -265,7 +265,7 @@ Requirements:
   write a candidate record. Two people label each candidate independently; Cohen's kappa is reported. Agents never make the final label.
 - **Pre-registration** on OSF before the A/B/C run, including hypotheses, metrics, margin, and analysis.
 - **Artifacts** on Zenodo with DOIs; aim for ACM artifact badges.
-- **Separation.** Cases used to build `wt` are never used to evaluate it; the held-out split is frozen before tuning.
+- **Separation.** Cases used to build `oakum` are never used to evaluate it; the held-out split is frozen before tuning.
 - **Authorship.** Find an academic co-author or arXiv cs.SE endorser before the first preprint.
 - StateBench (product) is built on StateBugs (research), so the standard goal and the research goal share one asset.
 
@@ -273,10 +273,10 @@ Requirements:
 
 | Goal | Mechanism |
 |---|---|
-| Show value | 30-second recording: agent edits, `wt` reproduces a stale-repopulation race with replay, agent fixes it; experiment results page |
+| Show value | 30-second recording: agent edits, `oakum` reproduces a stale-repopulation race with replay, agent fixes it; experiment results page |
 | Visitors | P1 findings as "state of" posts per ecosystem; one post per real upstream bug |
-| Real feedback | `wt feedback` opens a prefilled issue from a redacted report; every `unknown` links to "report this"; no telemetry |
-| Install rate | zero-config `scan`; `wt init` adds AGENTS.md line, Skill, and Action; first useful output in under 60 seconds |
+| Real feedback | `oakum feedback` opens a prefilled issue from a redacted report; every `unknown` links to "report this"; no telemetry |
+| Install rate | zero-config `scan`; `oakum init` adds AGENTS.md line, Skill, and Action; first useful output in under 60 seconds |
 | Targeted users | Go teams with stateful services; Gophers Slack, r/golang, Golang Weekly; testing examples contributed to go-redis and nats.go docs |
 
 ## 14. Non-goals

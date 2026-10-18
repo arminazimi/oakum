@@ -1,0 +1,6 @@
+/bin/
+/out/
+node_modules/
+planning/roadmap/out/
+bench/out/
+.DS_Store
