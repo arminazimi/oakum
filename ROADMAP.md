@@ -64,11 +64,15 @@ than the equivalent Go test. Then Phase 2 runs `E-pivot` instead of `E-product`.
 | Phase 5 | 2027-03-08 → 2027-04-04 | Recovery, multi-service, advanced properties, JVM | `0.4.0` |
 | Phase 6 | 2027-04-05 → 2027-05-02 | Open spec and conformance, Rust and .NET, CI systems | `0.5.0` + Spec 1.0-rc |
 | Phase 7 | 2027-05-03 → 2027-05-30 | Stability, governance, launch | **`1.0.0`** + Spec 1.0 |
-| Phase 8 | 2027-05-31 → 2027-06-27 | StateBench 1.0 and leaderboard | StateBench 1.0 |
-| Phase 9 | 2027-06-28 → 2027-07-25 | Trace-based property suggestion | `1.1.0` |
-| Phase 10 | 2027-07-26 → 2027-08-22 | Protocol and language breadth | `1.2.0` |
-| Phase 11 | 2027-08-23 → 2027-09-19 | Kubernetes, cross-repository contracts, shadow verify, IDE | `1.3.0` |
-| Phase 12 | 2027-09-20 → 2027-10-17 | Spec 2, team edition, twelve-month review | `2.0.0` + Spec 2.0 |
+| Phase 8 | 2027-05-31 → 2027-06-27 | StateBench 1.0 and leaderboard *(provisional)* | StateBench 1.0 |
+| Phase 9 | 2027-06-28 → 2027-07-25 | Trace-based property suggestion *(provisional)* | `1.1.0` |
+| Phase 10 | 2027-07-26 → 2027-08-22 | Protocol and language breadth *(provisional)* | `1.2.0` |
+| Phase 11 | 2027-08-23 → 2027-09-19 | Kubernetes, cross-repository contracts, shadow verify, IDE *(provisional)* | `1.3.0` |
+| Phase 12 | 2027-09-20 → 2027-10-17 | Spec 2, team edition, twelve-month review *(provisional)* | `2.0.0` + Spec 2.0 |
+
+**Month-6 checkpoint (2027-04-18).** Phases 0–7 are the plan; Phases 8–12 are provisional. At the checkpoint, task `review.m6` rewrites
+Phases 8–12 from the evidence so far: G1, G2, R1, G3, pilot feedback, maintenance cost per proxy and analyzer, and paper status. Any
+phase may be dropped, reordered, or replaced.
 
 ### Research track (parallel)
 
@@ -441,6 +445,7 @@ Requires G2.
 | Key | Task | Lane | Size | Depends |
 |---|---|---|---|---|
 | `paper.p4` | Tool paper on non-blocking command-level hold | maintainer | M | `concurrency.schedule` |
+| `review.m6` | Month-6 checkpoint: review gates, usage, maintenance cost, papers; rewrite Phases 8–12 | maintainer | S | `experiment.decide` |
 
 ---
 
@@ -458,7 +463,7 @@ Requires G2.
 
 ---
 
-# Phase 8 — StateBench 1.0 (2027-05-31 → 2027-06-27)
+# Phase 8 — StateBench 1.0 (2027-05-31 → 2027-06-27) · *provisional*
 
 ## Epic: StateBench
 <!-- wt-roadmap-key: E-statebench -->
@@ -472,7 +477,7 @@ Requires G2.
 
 ---
 
-# Phase 9 — Trace-based suggestion (2027-06-28 → 2027-07-25) · `1.1.0`
+# Phase 9 — Trace-based suggestion (2027-06-28 → 2027-07-25) · `1.1.0` · *provisional*
 
 ## Epic: Observed state graph
 <!-- wt-roadmap-key: E-trace -->
@@ -484,7 +489,7 @@ Requires G2.
 
 ---
 
-# Phase 10 — Protocol and language breadth (2027-07-26 → 2027-08-22) · `1.2.0`
+# Phase 10 — Protocol and language breadth (2027-07-26 → 2027-08-22) · `1.2.0` · *provisional*
 
 ## Epic: Breadth 2
 <!-- wt-roadmap-key: E-breadth2 -->
@@ -500,7 +505,7 @@ Requires G2.
 
 ---
 
-# Phase 11 — Kubernetes, cross-repository, shadow verify, IDE (2027-08-23 → 2027-09-19) · `1.3.0`
+# Phase 11 — Kubernetes, cross-repository, shadow verify, IDE (2027-08-23 → 2027-09-19) · `1.3.0` · *provisional*
 
 ## Epic: Platform and daily use
 <!-- wt-roadmap-key: E-platform -->
@@ -515,7 +520,7 @@ Requires G2.
 
 ---
 
-# Phase 12 — Spec 2 and team edition (2027-09-20 → 2027-10-17) · `2.0.0` + Spec 2.0
+# Phase 12 — Spec 2 and team edition (2027-09-20 → 2027-10-17) · `2.0.0` + Spec 2.0 · *provisional*
 
 ## Epic: Standard, sustainability, review
 <!-- wt-roadmap-key: E-standard -->
