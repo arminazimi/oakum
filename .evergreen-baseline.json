@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "evergreen.baseline.v1",
+  "createdAt": "2026-11-03T21:45:44.563Z",
+  "findings": [
+    {
+      "fingerprint": "8d7270a02d1b1ad62419d515e397646e3e124a43b85ecf3381f24b261c1fc308",
+      "ruleId": "go.runtime.end-of-support-1.24",
+      "path": "go.mod"
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-11-03T21:45:44.563Z",
+      "count": 1
+    }
+  ]
+}
